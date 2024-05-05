@@ -1,5 +1,6 @@
 from models import FinanceRecord
 
+
 class FileHandler:
     def __init__(self, file_path):
         self.file_path = file_path
@@ -16,7 +17,11 @@ class FileHandler:
             pass
         return records
 
-    def write_record(self, record):
-        with open(self.file_path, 'w') as file:
-            for attr in record:
-                file.write(f"{attr.date},{attr.category},{attr.amount},{attr.description}\n")
+    def write_record(self, records):
+        if isinstance(records, list):
+            with open(self.file_path, 'w') as file:
+                for record in records:
+                    file.write(f"{record.date},{record.category},{record.amount},{record.description}\n")
+        else:
+            with open(self.file_path, 'a') as file:
+                file.write(f"{records.date},{records.category},{records.amount},{records.description}\n")
