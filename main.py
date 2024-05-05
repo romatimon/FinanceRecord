@@ -40,7 +40,14 @@ def main():
             description = input("Новое описание: ")
             new_record = FinanceRecord(date, category, amount, description)
             finance_manager.edit_record(index, new_record)
-            print("Запись успешно обновлена!")
+            print("Запись успешно обновлена.")
+        elif choice == '4':
+            date = input("Дата (ГГГГ-ММ-ДД) (необязательно): ")
+            category = input("Категория (доход/расход) (необязательно): ")
+            amount = input("Сумма (необязательно): ")
+            filtered_records = finance_manager.search_records(date=date, category=category, amount=amount)
+            for record in filtered_records:
+                print(record)
 
 
 if __name__ == '__main__':

@@ -6,6 +6,7 @@ class FileHandler:
         self.file_path = file_path
 
     def read_records(self):
+        """Метод чтения файла."""
         records = []
         try:
             with open(self.file_path, 'r') as file:
@@ -18,6 +19,7 @@ class FileHandler:
         return records
 
     def write_record(self, records):
+        """Метод записи в файл."""
         if isinstance(records, list):
             with open(self.file_path, 'w') as file:
                 for record in records:
