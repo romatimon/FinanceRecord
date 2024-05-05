@@ -20,12 +20,15 @@ def main():
         choice = input('Ваш выбор: ')
 
         if choice == '1':
+            incomes, expenses = finance_manager.get_incomes_and_expenses()
+            print(f"Доходы: {incomes}")
+            print(f"Расходы: {expenses}")
             balance = finance_manager.get_balance()
             print(f'Текущий баланс: {balance}')
         elif choice == '2':
             date = input("Дата (ГГГГ-ММ-ДД): ")
-            category = input("Категория (доход/расход): ")
-            amount = int(input("Сумма: "))
+            category = input("Категория (Доход/Расход): ")
+            amount = float(input("Сумма: "))
             description = input("Описание: ")
             record = FinanceRecord(date, category, amount, description)
             finance_manager.add_record(record)
@@ -35,7 +38,7 @@ def main():
                 print(f"{i}. {record}")
             index = int(input("Выберите запись для редактирования: "))
             date = input("Новая дата (ГГГГ-ММ-ДД): ")
-            category = input("Новая категория (доход/расход): ")
+            category = input("Новая категория (Доход/Расход): ")
             amount = int(input("Новая сумма: "))
             description = input("Новое описание: ")
             new_record = FinanceRecord(date, category, amount, description)
@@ -44,10 +47,13 @@ def main():
         elif choice == '4':
             date = input("Дата (ГГГГ-ММ-ДД) (необязательно): ")
             category = input("Категория (доход/расход) (необязательно): ")
-            amount = input("Сумма (необязательно): ")
-            filtered_records = finance_manager.search_records(date=date, category=category, amount=amount)
+            amount = float(input("Сумма (необязательно): "))
+            filtered_records = finance_manager.search_records(date=date, category=category,amount=amount)
             for record in filtered_records:
                 print(record)
+        elif choice == '5':
+            print("Завершение программы...")
+            break
 
 
 if __name__ == '__main__':
